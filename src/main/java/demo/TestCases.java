@@ -72,6 +72,11 @@ public class TestCases {
        if(currentUrl.contains("problemset")){
         System.out.println("url contains problemset");
        }
+        try {
+            Thread.sleep(5000); // Wait for the page to load
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
       List<WebElement> list=driver.findElements(By.xpath(" //a[@class='h-5 hover:text-blue-s dark:hover:text-dark-blue-s']"));
       int inputCount=6;
       for(int i=0;i<inputCount;i++){
@@ -90,6 +95,11 @@ public class TestCases {
     
      public  boolean testCase03(){
        System.out.println("Start Test case: testCase03");
+         try {
+            Thread.sleep(5000); // Wait for the page to load
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
       driver.findElement(By.xpath("//a[text()='Two Sum']")).click();
        String currentUrl=driver.getCurrentUrl();
        if(currentUrl.contains("two-sum")){
@@ -102,7 +112,16 @@ public class TestCases {
 
      public  boolean testCase04(){
        System.out.println("Start Test case: testCase04");
-       driver.findElement(By.xpath("//span[text()='Submissions']")).click();
+        
+
+       WebElement submissionTab = driver.findElement(By.id("submissions_tab"));
+        submissionTab.click();
+
+       try {
+            Thread.sleep(10000); // Wait for the page to load
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
        System.out.println("end Test case: testCase04");
      
        String res= driver.findElement(By.xpath("//a[text()='Register or Sign In']")).getText();
