@@ -11,12 +11,22 @@ public class App {
         TestCases tests = new TestCases(); // Initialize your test class
 
         //TODO: call your test case functions one after other here
-
-        tests.testCase01();
-
+        int count=0;
+        
+        if(tests.testCase01()){
+            count++;
+        }
+        if(tests.testCase02()){
+            count++;
+        }
+        if(tests.testCase03()){
+            count++;
+        }
+        if(tests.testCase04()){
+            count++;
+        }
+        System.out.println("Total no of testcases "+count);
         //END Tests
-
-
         tests.endTest(); // End your test by clearning connections and closing browser
     }
 

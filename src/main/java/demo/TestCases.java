@@ -1,7 +1,12 @@
 package demo;
 
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -33,7 +38,7 @@ public class TestCases {
 
         // Set browser to maximize and wait
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
     }
 
@@ -46,10 +51,65 @@ public class TestCases {
     }
 
     
-    public  void testCase01(){
+    public  boolean testCase01(){
         System.out.println("Start Test case: testCase01");
-        driver.get("https://www.google.com");
+        driver.get("https://leetcode.com/");
+        String currentUrl=driver.getCurrentUrl();
+       if(currentUrl.contains("leetcode")){
+         System.out.println("TestCase01 is passed sucessfully");
+           System.out.println("end Test case: testCase01");
+         return true;
+       }
         System.out.println("end Test case: testCase02");
+        return false;
+    }
+
+     public  boolean testCase02(){
+        System.out.println("Start Test case: testCase01");
+      driver.findElement(By.xpath(" //p[contains(text(),'Questions')]")).click();
+
+       String currentUrl=driver.getCurrentUrl();
+       if(currentUrl.contains("problemset")){
+        System.out.println("url contains problemset");
+       }
+      List<WebElement> list=driver.findElements(By.xpath(" //a[@class='h-5 hover:text-blue-s dark:hover:text-dark-blue-s']"));
+      int inputCount=6;
+      for(int i=0;i<inputCount;i++){
+        System.out.println(list.get(i).getText());
+      }
+
+        System.out.println("end Test case: testCase02");
+     
+      //a[text()='Two Sum']
+
+      //span[text()='Submissions']
+      //a[text()='Register or Sign In']
+      
+        return true;
+    }
+    
+     public  boolean testCase03(){
+       System.out.println("Start Test case: testCase03");
+      driver.findElement(By.xpath("//a[text()='Two Sum']")).click();
+       String currentUrl=driver.getCurrentUrl();
+       if(currentUrl.contains("two-sum")){
+        System.out.println("url contains two-sum");
+       }
+        System.out.println("end Test case: testCase03");
+     
+        return true;
+    }
+
+     public  boolean testCase04(){
+       System.out.println("Start Test case: testCase04");
+       driver.findElement(By.xpath("//span[text()='Submissions']")).click();
+       System.out.println("end Test case: testCase04");
+     
+       String res= driver.findElement(By.xpath("//a[text()='Register or Sign In']")).getText();
+       if(res.contains("Register or Sign In")){
+        return true;
+       }
+          return false;
     }
 
 
